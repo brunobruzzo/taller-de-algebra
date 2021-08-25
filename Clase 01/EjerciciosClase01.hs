@@ -10,13 +10,13 @@ maximoabsoluto x y | absoluto x > absoluto y = absoluto x
                    | otherwise = absoluto y
 
 -- Devuelve el maximo entre tres numeros enteros
-maximo3 :: Int -> Int -> Int -> Int
-maximo3 x y z | x > y && x > z = x
-              | y > x && y > z = y
-              | z > x && z > y = z
-              | x == y && x > z = x
-              | x == y && x == z = x
-              |
+max2 :: Int -> Int -> Int
+max2 x y | x >= y = x
+         | otherwise = y
+
+max3 :: Int -> Int -> Int -> Int
+max3 x y z | max2 x y >= z = max2 x y
+           | otherwise = z
 
 -- Dados dos numeros racionales, decide si alguno de los dos es igual a 0 (Sin pattern matching)
 algunoEs0 :: Float -> Float -> Bool
@@ -41,3 +41,18 @@ digitoUnidades :: Int -> Int
 digitoUnidades x = mod x 10
 
 -- Dado un numero natural, extrae su digito de las decenas
+digitoDecenas :: Int -> Int
+digitoDecenas x = div (mod x 100) 10 
+
+-- Voy a natacion los Lun y Mie de Septiembre. No voy el 29. Voy a natacion el dia x?
+natacion :: Int -> Bool
+natacion 29 = False
+natacion x = mod x 7 == 1 || mod x 7 == 6
+
+-- Dados dos numeros naturales x y, devuelve el n-esimo digito de x.
+nesimoDig :: Int -> Int -> Int
+nesimoDig x n = div ( mod x (10^n) ) (10^(n-1))
+
+-- Resolucion by Chapa
+digitoN :: Int -> Int -> Int
+digitoN x n = mod (div x (10^(n-1))) 10
