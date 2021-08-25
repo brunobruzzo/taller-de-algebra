@@ -23,9 +23,10 @@ sumaTerna (x,y,z) = x+y+z
 
 -- Dada una terna de enteros, devuelve la posicion del primer numero par si es que hay alguno, y devuelve 4 si son todos impares.
 posicPrimerPar :: (Int,Int,Int) -> Int
-posicPrimerPar (x,y,z) | mod x 2 == 0
+posicPrimerPar (x,y,z) | mod x 2 == 0 = 1
+                       | mod y 2 == 0 = 2
+                       | mod z 2 == 0 = 3
                        | otherwise = 4
---			where terna = (x,y,z) 
 
 -- Crea un par a partir de las dos componentes dadas por separado (pueden ser de cualquier tipo)
 crearPar :: a -> b -> (a, b)
