@@ -32,9 +32,13 @@ divisoresAux n k | mod n k == 0 = k : divisoresAux n (k-1)
 --(3)
 --Un numero es coprimo con otro si su mcd da 1. Buscamos un primo menor entonces restamos 1 al valor recibido.
 coprimoCon :: Integer -> Integer
-coprimoCon 1 = 0
-coprimoCon n | mcd n (n-1) == 1 = (n-1)
-             | otherwise = coprimoCon (n-1)
+coprimoCon n = coprimoConAux n (n-2)
+
+-- Usamos una funcion auxiliar para no "perder" el numero original. Empezamos desde n-2 porque es condición que 1 < m < n-1
+coprimoConAux :: Integer -> Integer -> Integer
+coprimoConAux n m | m == n = coprimoConAux n (m-1)
+                  | mcd n m == 1 = m
+                  | otherwise = coprimoConAux n (m-1)
 
 mcd :: Integer -> Integer -> Integer
 mcd n 0 = n
